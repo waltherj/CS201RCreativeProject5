@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+  <script src="javascripts/app.js" type="text/javascript"></script> <!-- Put the name of our angular file in this script -->
+  <link href="https://fonts.googleapis.com/css?family=Share" rel="stylesheet">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
+  <title>Creative Project 4</title>
+</head>
+<body class="container" ng-app="app" ng-controller="MainCtrl">
+  <div class="header">
+  <h1>FoodFinder</h1>
+  <p>Find restaurants close to BYU according to your preference<br>Search for your preference (i.e. taco, mexican, chinese, pizza)</p>
+  </div>
+
+<div id="wordSearch">
+  {{searchedWord}}
+</div>
+
+
+<div class="notheader">
+ <div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input ng-model="searchInput" type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="searchButtonClicked(searchInput)">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+
+  <div class="content">
+   <div class="resulting"  ng-repeat="result in results">     
+    <div class="restaurant">
+     <h3>Restaurant: {{result.name}}</h3>
+     <h4>Rating: {{result.rating}} &nbsp;&nbsp;&nbsp;&nbsp;Price Level: {{result.price_level}}</h4>
+     <p>Address: {{result.vicinity}}</p>
+    </div>
+   </div>
+  </div>
+</div>
+</body>
+</html>
