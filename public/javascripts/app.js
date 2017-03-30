@@ -4,7 +4,20 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.searchedWord = "";
 	$scope.results = [];
 	$scope.favorites = [];
-	$scope.addFavText = "Add to Favorites";
+
+	$scope.toggle = function(restaurant){
+		restaurant.toggle=!restaurant.toggle;
+		console.log(restaurant);
+		var fav = {name: restaurant.name, rating: restaurant.rating, price_level: restaurant.price_level, vicinity: restaurant.vicinity};
+		$http.post('/favorite', fav).success(function(data) {
+			$scope.favorites.push(fav);
+		});
+	}
+
+	$scope.toggled = function(item) {
+		return item.toggle;
+	}
+
 
 	$scope.searchButtonClicked = function(word) {
 		$scope.searchedWord = word;
@@ -16,14 +29,6 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	};
 	
 
-	$scope.addFavoriteClicked = function(restaurant) {
-		console.log(restaurant);
-		var fav = {name: restaurant.name, rating: restaurant.rating, price_level: restaurant.price_level, vicinity: restaurant.vicinity};
-		$scope.addFavText = "Favorite";
-		$http.post('/favorite', fav).success(function(data) {
-			$scope.favorites.push(fav);
-		});
-	};
 	
 	$scope.showFavorites = function() {
 		

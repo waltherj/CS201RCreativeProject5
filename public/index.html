@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Share" rel="stylesheet">
   <meta charset="utf-8">
   <link rel="stylesheet" href="stylesheets/style.css" type="text/css">
-  <title>Creative Project 4</title>
+  <title>Creative Project 5</title>
 </head>
 <body class="container" ng-app="app" ng-controller="MainCtrl">
   <div class="header">
@@ -42,7 +42,7 @@
    <div class="resulting"  ng-repeat="result in results">     
     <div class="restaurant">
      <h3>Restaurant: {{result.name}}</h3>
-     <button class="favorite" type="button" ng-click="addFavoriteClicked(result)">{{addFavText}}</button>
+     <button class="favorite" type="button" ng-click="toggle(result)">{{toggled(result) ? 'Favorite' : 'Add to Favorites'}}</button>
      <h4>Rating: {{result.rating}} &nbsp;&nbsp;&nbsp;&nbsp;Price Level: {{result.price_level}}</h4>
      <p>Address: {{result.vicinity}}</p>
     </div>
