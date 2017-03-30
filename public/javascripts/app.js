@@ -26,6 +26,7 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	};
 	
 	$scope.showFavorites = function() {
+		
 		$http.get("/getFavorites").then(function(response){
 			$scope.favorites = response.data;
 		});

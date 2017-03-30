@@ -15,10 +15,12 @@
   <div class="header">
   <h1>FoodFinder</h1>
   <p>Find restaurants close to BYU according to your preference<br>Search for your preference (i.e. taco, mexican, chinese, pizza)</p>
-  <button class="searchRest" type="button" ng-click="showSearch()">Search Restuarants</button>
-  <button class="allFavorites" type="button" ng-click="showFavorites()">Show Favorites</button>
+  <button class="navbut searchRest" type="button"  ng-click="showSearch(); showFavorite=false">Search Restuarants</button>
+  <button class="navbut allFavorites" type="button" ng-click="showFavorite=true; showFavorites()">Show Favorites</button>
   </div>
 
+
+<div id="SearchField" ng-hide="showFavorite" >
 <div id="wordSearch">
   {{searchedWord}}
 </div>
@@ -30,7 +32,7 @@
     <div class="input-group">
       <input ng-model="searchInput" type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" ng-click="searchButtonClicked(searchInput)">Go!</button>
+        <button class="btn btn-default" id="go" type="button" ng-click="searchButtonClicked(searchInput)">Go!</button>
       </span>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
@@ -47,5 +49,26 @@
    </div>
   </div>
 </div>
+</div>
+
+<div id="FavoriteField" ng-show="showFavorite">  
+<div id="wordSearch">
+  Favorites
+</div>
+
+<div class="notheader">
+  <div class="content">
+   <div class="resulting"  ng-repeat="favorite in favorites">     
+    <div class="restaurant">
+     <h3>Restaurant: {{favorite.name}}</h3>
+     <button class="favorite" type="button" ng-click="removeFavoriteClicked(favorite)">Remove favorite</button>
+     <h4>Rating: {{favorite.rating}} &nbsp;&nbsp;&nbsp;&nbsp;Price Level: {{favorite.price_level}}</h4>
+     <p>Address: {{favorite.vicinity}}</p>
+    </div>
+   </div>
+  </div>
+</div>
+</div>
+
 </body>
 </html>
