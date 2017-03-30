@@ -8,10 +8,10 @@ var mongoose = require('mongoose'); //Adds mongoose as a usable dependency
 mongoose.connect('mongodb://localhost/restaurantsDB'); //Connects to a mongo database called "commentDB"
 
 var restaurantSchema = mongoose.Schema({ //Defines the Schema for this database
-Name: String,
-Rating: Number,
-PriceLevel: Number,
-Address: String
+name: String,
+rating: Number,
+price_level: Number,
+vicinity: String
 });
 
 var Restaurant = mongoose.model('Restaurant', restaurantSchema); //Makes an object from that schema as a model
@@ -33,7 +33,7 @@ router.get('/getRestaurants', function(req, res, next) {
 });
 
 router.get('/getFavorites', function(req, res, next) {
-	console.log("GET favorite route"
+	console.log("GET favorite route");
 	Restuarant.find(function(arr, favoriteList) {
 		if(err) return console.error(err)
 		else {

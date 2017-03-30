@@ -15,6 +15,7 @@
   <div class="header">
   <h1>FoodFinder</h1>
   <p>Find restaurants close to BYU according to your preference<br>Search for your preference (i.e. taco, mexican, chinese, pizza)</p>
+  <button class="allFavorites" type="button" ng-click="showFavoritesi()">Show Favorites</button>
   </div>
 
 <div id="wordSearch">
@@ -38,7 +39,7 @@
    <div class="resulting"  ng-repeat="result in results">     
     <div class="restaurant">
      <h3>Restaurant: {{result.name}}</h3>
-     <button class="favorite" type="button" ng-click="addFavorite(result)">{{addFavText}}</button>
+     <button class="favorite" type="button" ng-click="addFavoriteClicked(result)">{{addFavText}}</button>
      <h4>Rating: {{result.rating}} &nbsp;&nbsp;&nbsp;&nbsp;Price Level: {{result.price_level}}</h4>
      <p>Address: {{result.vicinity}}</p>
     </div>

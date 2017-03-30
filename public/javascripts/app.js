@@ -17,7 +17,7 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	};
 	
 
-	$scope.addFavoriteClicked = function(restaurant) {
+	$scope.addFavoriteClicked = function(id) {
 		$scope.addFavText = "Favorite";
 		$http.post('/favorite', restaurant).success(function(data) {
 			$scope.favorites.push(restuarant);
