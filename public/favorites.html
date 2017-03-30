@@ -19,29 +19,16 @@
   </div>
 
 <div id="wordSearch">
-  {{searchedWord}}
+  Favorites
 </div>
 
-
-<div class="notheader">
- <div class="row">
-  <div class="col-lg-6">
-    <div class="input-group">
-      <input ng-model="searchInput" type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" ng-click="searchButtonClicked(searchInput)">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-
   <div class="content">
-   <div class="resulting"  ng-repeat="result in results">     
+   <div class="resulting"  ng-repeat="favorite in favorites">     
     <div class="restaurant">
-     <h3>Restaurant: {{result.name}}</h3>
-     <button class="favorite" type="button" ng-click="addFavoriteClicked(result)">{{addFavText}}</button>
-     <h4>Rating: {{result.rating}} &nbsp;&nbsp;&nbsp;&nbsp;Price Level: {{result.price_level}}</h4>
-     <p>Address: {{result.vicinity}}</p>
+     <h3>Restaurant: {{favorite.name}}</h3>
+     <button class="favorite" type="button" ng-click="removeFavoriteClicked(favorite)">Remove favorite</button>
+     <h4>Rating: {{favorite.rating}} &nbsp;&nbsp;&nbsp;&nbsp;Price Level: {{favorite.price_level}}</h4>
+     <p>Address: {{favorite.vicinity}}</p>
     </div>
    </div>
   </div>
