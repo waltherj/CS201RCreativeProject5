@@ -14,15 +14,14 @@
 <body class="container" ng-app="app" ng-controller="MainCtrl">
   <div class="header">
   <h1>FoodFinder</h1>
-  <p>Find restaurants close to BYU according to your preference<br>Search for your preference (i.e. taco, mexican, chinese, pizza)</p>
-  <button class="navbut searchRest" type="button"  ng-click="showSearch(); showFavorite=false">Search Restuarants</button>
-  <button class="navbut allFavorites" type="button" ng-click="showFavorite=true; showFavorites()">Show Favorites</button>
+  <p>Find restaurants close to BYU according to your preference<br>Search for your preference (i.e. tacos, chinese, pizza)</p>
+  <button class="navbut searchRest" type="button"  ng-class="classSearch" ng-click="showSearch(); showFavorite=false; changeClass()">Search Restuarants</button>
+  <button class="navbut allFavorites" type="button" ng-class="classFav"  ng-click="showFavorite=true;  showFavorites(); changeClass()">Show Favorites</button>
   </div>
 
 
 <div id="SearchField" ng-hide="showFavorite" >
 <div id="wordSearch">
-  {{searchedWord}}
 </div>
 
 
@@ -30,7 +29,7 @@
  <div class="row">
   <div class="col-lg-6">
     <div class="input-group">
-      <input ng-model="searchInput" type="text" class="form-control" placeholder="Search for...">
+      <input ng-model="searchInput" type="text" class="form-control" ng-keyup="$event.keyCode == 13 ? searchButtonClicked(searchInput) : null" placeholder="Search for...">
       <span class="input-group-btn">
         <button class="btn btn-default" id="go" type="button" ng-click="searchButtonClicked(searchInput)">Go!</button>
       </span>
@@ -53,7 +52,7 @@
 
 <div id="FavoriteField" ng-show="showFavorite">  
 <div id="wordSearch">
-  Favorites
+  
 </div>
 
 <div class="notheader">

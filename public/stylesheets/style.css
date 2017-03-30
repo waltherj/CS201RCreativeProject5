@@ -1,12 +1,12 @@
 body {
-  background-color: #107896;
+  background-color: #800000;
   margin: 0;
   padding:0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Arial Black", Helvetica, Arial, sans-serif;
 }
 
 .header {
-  background-color: #107896;
+  background-color: #800000;
   color: white;
   padding-top:20px;
   position:fixed;
@@ -56,4 +56,13 @@ a {
   background-color:white;
   padding: 7px;
   margin:10px;
+}
+
+.blue {
+background-color: blue;
+}
+
+.white {
+background-color: white;
+
 }

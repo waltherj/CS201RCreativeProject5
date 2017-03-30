@@ -5,6 +5,21 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.results = [];
 	$scope.favorites = [];
 	$scope.fff = [];
+	$scope.classSearch = "white";
+	$scope.classFav = "white";
+	$scope.highlight = 0;
+
+
+
+$scope.changeClass = function(){
+    if ($scope.highlight == 1) {
+	      $scope.classSearch = "blue";
+	$scope.classFav = "white"; 
+}
+    else if ($scope.highlight == 2) {
+      $scope.classFav = "blue";
+	$scope.classSearch = "white"; }
+  };
 
 	$scope.toggle = function(restaurant){
 		restaurant.toggle=!restaurant.toggle;
@@ -27,6 +42,7 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 
 
 	$scope.searchButtonClicked = function(word) {
+		
 		$scope.searchedWord = word;
 		console.log($scope.searchedWord);
 		$http.get("/restaurants?keyword=" + word).then(function(response){
@@ -38,14 +54,14 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 
 	
 	$scope.showFavorites = function() {
-		
+		$scope.highlight = 2;
 		$http.get("/favorites").then(function(response){
 			$scope.favorites = response.data;
 		});
 	};
 	
 	$scope.showSearch = function() {
-		
+		$scope.highlight = 1;
 	}
 
 	$scope.removeByID = function(id) {
@@ -80,3 +96,13 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
     };
 }]);
 
+
+$('textarea').bind("enterKey",function(e){
+   //do stuff here
+});
+$('textarea').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+        $(this).trigger("enterKey");
+    }
+});
