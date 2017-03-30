@@ -8,10 +8,14 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.toggle = function(restaurant){
 		restaurant.toggle=!restaurant.toggle;
 		console.log(restaurant);
+		if (restaurant.toggle) {
 		var fav = {name: restaurant.name, rating: restaurant.rating, price_level: restaurant.price_level, vicinity: restaurant.vicinity};
 		$http.post('/favorite', fav).success(function(data) {
 			$scope.favorites.push(fav);
 		});
+		} else {
+		//$scope.removeFavoriteClicked(restaurant);
+		}
 	}
 
 	$scope.toggled = function(item) {
@@ -22,7 +26,7 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.searchButtonClicked = function(word) {
 		$scope.searchedWord = word;
 		console.log($scope.searchedWord);
-		$http.get("/getRestaurants?keyword=" + word).then(function(response){
+		$http.get("/restaurants?keyword=" + word).then(function(response){
 			$scope.results = response.data.results;
 
 		});
@@ -32,7 +36,7 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	
 	$scope.showFavorites = function() {
 		
-		$http.get("/getFavorites").then(function(response){
+		$http.get("/favorites").then(function(response){
 			$scope.favorites = response.data;
 		});
 	};
@@ -40,11 +44,13 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	$scope.showSearch = function() {
 		
 	}
-	$scope.removeFavoriteClicked = function(restaurant) {
-		$http.delete('/deleteFavorite', restaurant).success(function(data) {
-			var index = $scope.restaurants.indexOf(restuarant);
-			$scope.restaurants.splice(index, 1);
-		});
-	};
+	$scope.removeFavoriteClicked = function(favorite) {
+      $http.delete('/favorites/' + favorite._id )
+        .success(function(data){
+          console.log("delete worked");
+	  $scope.showFavorites();
+	  favorite.toggle = false;
+        });
+    };
 }]);
 
