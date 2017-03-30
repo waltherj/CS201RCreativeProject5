@@ -38,6 +38,7 @@
    <div class="resulting"  ng-repeat="result in results">     
     <div class="restaurant">
      <h3>Restaurant: {{result.name}}</h3>
+     <button class="favorite" type="button" ng-click="addFavorite(result)">Add to Favorites!</button>
      <h4>Rating: {{result.rating}} &nbsp;&nbsp;&nbsp;&nbsp;Price Level: {{result.price_level}}</h4>
      <p>Address: {{result.vicinity}}</p>
     </div>
