@@ -10,7 +10,6 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 		$scope.searchedWord = word;
 		console.log($scope.searchedWord);
 		$http.get("/getRestaurants?keyword=" + word).then(function(response){
-
 			$scope.results = response.data.results;
 
 		});
@@ -27,10 +26,10 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	};
 	
 	$scope.showFavorites = function() {
-		var allFav = $http.get("/getFavorites").then(function(response){
-			$scope.results = response.data.results;
+		$http.get("/getFavorites").then(function(response){
+			$scope.results = response.data;
+			console.log(response.data);
 		});
-		console.log(allFav);
 	};
 }]);
 
