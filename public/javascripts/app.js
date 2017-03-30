@@ -64,12 +64,19 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	};
 
 	$scope.removeFavoriteClicked = function(favorite) {
+	var x = favorite.id;
       $http.delete('/favorites/' + favorite._id )
         .success(function(data){
           console.log("delete worked");
 	  $scope.showFavorites();
-	  favorite.toggle = false;
-        });
+	var count;
+	for(count = 0; count < $scope.results.length; count++){
+		if ($scope.results[count].id == x) {
+			console.log("Success!");
+			$scope.results[count].toggle = false;
+		}
+	}
+	});
     };
 }]);
 
