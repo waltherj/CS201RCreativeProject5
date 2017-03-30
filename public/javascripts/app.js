@@ -17,10 +17,12 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	};
 	
 
-	$scope.addFavoriteClicked = function(id) {
+	$scope.addFavoriteClicked = function(restaurant) {
+		console.log(restaurant);
+		var fav = {name: restaurant.name, rating: restaurant.rating, price_level: restaurant.price_level, vicinity: restaurant.vicinity};
 		$scope.addFavText = "Favorite";
-		$http.post('/favorite', restaurant).success(function(data) {
-			$scope.favorites.push(restuarant);
+		$http.post('/favorite', fav).success(function(data) {
+			$scope.favorites.push(fav);
 		});
 	};
 	
