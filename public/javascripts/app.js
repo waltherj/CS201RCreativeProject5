@@ -30,5 +30,15 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 			$scope.favorites = response.data;
 		});
 	};
+	
+	$scope.showSearch = function() {
+		
+	}
+	$scope.removeFavoriteClicked = function(restaurant) {
+		$scope.delete('/deleteFavorite', restaurant).success(function(data) {
+			var index = $scope.restaurants.indexOf(restuarant);
+			$scope.restaurants.splice(index, 1);
+		});
+	};
 }]);
 

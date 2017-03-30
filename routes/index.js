@@ -54,7 +54,12 @@ router.post('/favorite', function(req, res, next) {
   });
 });
 
-
+router.delete('/removeFavorite', function(req, red, next) {
+  console.log("DELETE favorite route");
+  console.log(req.body);
+  req.restaurant.remove();
+  res.json(req.restaurant);
+});
 
 
 module.exports = router;
