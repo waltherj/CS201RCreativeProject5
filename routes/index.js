@@ -34,7 +34,7 @@ router.get('/getRestaurants', function(req, res, next) {
 
 router.get('/getFavorites', function(req, res, next) {
 	console.log("GET favorite route");
-	Restuarant.find(function(arr, favoriteList) {
+	Restaurant.find(function(err, favoriteList) {
 		if(err) return console.error(err)
 		else {
 			console.log(favoriteList);
