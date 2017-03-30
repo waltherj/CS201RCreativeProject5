@@ -27,8 +27,7 @@ app.controller('MainCtrl', ['$scope', '$http', function($scope, $http){
 	
 	$scope.showFavorites = function() {
 		$http.get("/getFavorites").then(function(response){
-			$scope.results = response.data;
-			console.log(response.data);
+			$scope.favorites = response.data;
 		});
 	};
 }]);
